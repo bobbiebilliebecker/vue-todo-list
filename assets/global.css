@@ -1,0 +1,49 @@
+.container {
+  font-family: "Helvetica", sans-serif;
+  width: 768px;
+  margin: 50px auto;
+  text-align: left;
+}
+
+.todolist__title {
+  width: 100%;
+  display: block;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.todolist__section--complete {
+  margin-top: 2rem;
+}
+
+.todolist__section-heading {
+  font-size: 1rem;
+  max-width: 80%;
+  margin: 0 auto 1rem;
+}
+
+.todolist__list {
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+}
+
+.todolist__list-item {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.todolist__list-item--done {
+  text-decoration: line-through;
+}
+
+.todolist__list-item-checkbox {
+  margin-right: 1rem;
+}
+
+.todolist__form {
+  max-width: 80%;
+  margin: 0 auto;
+  list-style: none;
+  text-align: center;
+}

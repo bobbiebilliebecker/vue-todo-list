@@ -1,51 +1,51 @@
 <template>
-  <div class="todolist">
-    <h1 class="todolist__title">Todo List</h1>
-    <section class="todolist__section">
-      <h2 class="todolist__section-heading">incomplete</h2>
-      <ul class="todolist__list">
-        <li
-          v-for="(item, index) in list"
-          v-if="!item.done"
-          v-bind:key="index"
-          v-bind:class="item.done ? 'todolist__list-item todolist__list-item--done' : 'todolist__list-item'"
-        >
-          <input @click="toggleChecked(index)" type="checkbox" class="todolist__list-item-checkbox">
-          <span class="todolist__list-item-text">{{item.name}}</span>
-        </li>
-      </ul>
+  <container>
+    <main-heading></main-heading>
+    <section>
+      <todo-form
+        :new-item="newItem"
+        :create-new-todo="createNewTodo">
+      </todo-form>
     </section>
-    <section class="todolist__section">
-      <form @submit.prevent="createNewTodo" class="todolist__form">
-        <input v-model="newItem['name']" class="todolist__form-text" type="text">
-        <input class="todolist__form-submit" type="submit" value="new todo">
-      </form>
+    <section>
+      <section-heading
+        text="incomplete"></section-heading>
+      <todo-list
+        :done="true"
+        :list="list"
+        :toggle-checked="toggleChecked">
+      </todo-list>
     </section>
-    <section class="todolist__section todolist__section--complete">
-      <h2 class="todolist__section-heading">complete</h2>
-      <ul class="todolist__list">
-        <li
-          v-for="(item, index) in list"
-          v-if="item.done"
-          v-bind:key="index"
-          v-bind:class="item.done ? 'todolist__list-item todolist__list-item--done' : 'todolist__list-item'"
-        >
-          <input
-            @click="toggleChecked(index)"
-            v-model="item.done"
-            type="checkbox"
-            class="todolist__list-item-checkbox"
-          >
-          <span class="todolist__list-item-text">{{item.name}}</span>
-        </li>
-      </ul>
+    <section>
+      <section-heading
+        text="complete"></section-heading>
+      <todo-list
+        :done="false"
+        :list="list"
+        :toggle-checked="toggleChecked">
+      </todo-list>
     </section>
-  </div>
+  </container>
 </template>
 
 <script>
+import MainHeading from './components/MainHeading.vue';
+import Section from './containers/Section.vue';
+import SectionHeading from './components/SectionHeading.vue';
+import Container from './containers/Container.vue';
+import TodoList from './components/TodoList.vue'
+import TodoForm from './components/TodoForm.vue'
+
 export default {
   name: "App",
+  components: {
+    MainHeading,
+    Container,
+    Section,
+    SectionHeading,
+    TodoList,
+    TodoForm
+  },
   data() {
     return {
       message: "hello world",
@@ -67,55 +67,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.todolist {
-  font-family: "Helvetica", sans-serif;
-  width: 768px;
-  margin: 50px auto;
-  text-align: left;
-}
-
-.todolist__title {
-  width: 100%;
-  display: block;
-  font-size: 2rem;
-  text-align: center;
-}
-
-.todolist__section--complete {
-  margin-top: 2rem;
-}
-
-.todolist__section-heading {
-  font-size: 1rem;
-  max-width: 80%;
-  margin: 0 auto 1rem;
-}
-
-.todolist__list {
-  max-width: 80%;
-  margin: 0 auto;
-  list-style: none;
-}
-
-.todolist__list-item {
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.todolist__list-item--done {
-  text-decoration: line-through;
-}
-
-.todolist__list-item-checkbox {
-  margin-right: 1rem;
-}
-
-.todolist__form {
-  max-width: 80%;
-  margin: 0 auto;
-  list-style: none;
-  text-align: center;
-}
-</style>
