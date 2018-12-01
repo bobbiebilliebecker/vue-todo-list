@@ -3,18 +3,14 @@
     <h1 class="todolist__title">Todo List</h1>
     <section class="todolist__section">
       <h2 class="todolist__section-heading">incomplete</h2>
-      <ul class="todolist__list todolist__list--incomplete">
+      <ul class="todolist__list">
         <li
           v-for="(item, index) in list"
+          v-if="!item.done"
           v-bind:key="index"
           v-bind:class="item.done ? 'todolist__list-item todolist__list-item--done' : 'todolist__list-item'"
         >
-          <input
-            @click="toggleChecked(index)"
-            type="checkbox"
-            v-bind:checked="item.done"
-            class="todolist__list-item-checkbox"
-          >
+          <input @click="toggleChecked(index)" type="checkbox" class="todolist__list-item-checkbox">
           <span class="todolist__list-item-text">{{item.name}}</span>
         </li>
       </ul>
@@ -28,9 +24,19 @@
     <section class="todolist__section todolist__section--complete">
       <h2 class="todolist__section-heading">complete</h2>
       <ul class="todolist__list">
-        <li class="todolist__list-item">
-          <input type="checkbox" class="todolist__list-item-checkbox">
-          <span class="todolist__list-item-text">take the dog for a walk</span>
+        <li
+          v-for="(item, index) in list"
+          v-if="item.done"
+          v-bind:key="index"
+          v-bind:class="item.done ? 'todolist__list-item todolist__list-item--done' : 'todolist__list-item'"
+        >
+          <input
+            @click="toggleChecked(index)"
+            v-model="item.done"
+            type="checkbox"
+            class="todolist__list-item-checkbox"
+          >
+          <span class="todolist__list-item-text">{{item.name}}</span>
         </li>
       </ul>
     </section>
