@@ -4,8 +4,12 @@
     class="todolist__form">
     <input 
       v-model="newItem['name']"
-      class="todolist__form-text" type="text">
-    <input class="todolist__form-submit" type="submit" value="new todo">
+      class="todolist__form-text" 
+      type="text" />
+    <input 
+      class="todolist__form-submit" 
+      type="submit" 
+      value="new todo" />
   </form>
 </template>
 

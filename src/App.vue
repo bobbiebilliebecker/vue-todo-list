@@ -8,10 +8,10 @@
       </todo-form>
     </section>
     <section>
-      <section-heading
-        text="incomplete"></section-heading>
+      <section-heading text="incomplete">
+      </section-heading>
       <todo-list
-        :done="true"
+        :done="false"
         :list="list"
         :toggle-checked="toggleChecked">
       </todo-list>
@@ -20,7 +20,7 @@
       <section-heading
         text="complete"></section-heading>
       <todo-list
-        :done="false"
+        :done="true"
         :list="list"
         :toggle-checked="toggleChecked">
       </todo-list>
